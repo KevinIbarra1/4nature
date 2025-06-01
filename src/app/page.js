@@ -6,17 +6,27 @@ import {
   Users,
   Globe,
   Mail,
-  Phone,
   MapPin,
   ArrowRight,
   Menu,
   X,
   Instagram,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isMenuOpen]);
 
   return (
     <div className="min-h-screen bg-white scroll-smooth">
@@ -85,65 +95,74 @@ export default function LandingPage() {
               )}
             </button>
           </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <nav className="lg:hidden mt-4 pb-4 border-t border-gray-200 animate-fadeIn">
-              <div className="flex flex-col space-y-4 pt-4">
-                <a
-                  href="#about"
-                  className="text-gray-700 hover:text-black font-medium transition-colors"
-                >
-                  About
-                </a>
-                <a
-                  href="#mission"
-                  className="text-gray-700 hover:text-black font-medium transition-colors"
-                >
-                  Our Work
-                </a>
-                <a
-                  href="#impact"
-                  className="text-gray-700 hover:text-black font-medium transition-colors"
-                >
-                  Impact
-                </a>
-                <a
-                  href="#contact"
-                  className="text-gray-700 hover:text-black font-medium transition-colors"
-                >
-                  Contact
-                </a>
-                <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition-colors font-medium w-fit">
-                  Donate
-                </button>
-              </div>
-            </nav>
-          )}
         </div>
       </header>
 
+      {/* Mobile Navigation */}
+      <nav
+        className={`fixed inset-0 bg-black z-50 transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:hidden`}
+      >
+        <div className="absolute top-4 right-4">
+          <button onClick={() => setIsMenuOpen(false)} className="text-white">
+            <X className="h-8 w-8" />
+          </button>
+        </div>
+        <div className="flex flex-col items-center justify-center h-full space-y-8">
+          <a
+            href="#about"
+            className="text-white text-2xl hover:text-gray-300 transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            About
+          </a>
+          <a
+            href="#mission"
+            className="text-white text-2xl hover:text-gray-300 transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Our Work
+          </a>
+          <a
+            href="#impact"
+            className="text-white text-2xl hover:text-gray-300 transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Impact
+          </a>
+          <a
+            href="#contact"
+            className="text-white text-2xl hover:text-gray-300 transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Contact
+          </a>
+          <button
+            className="bg-white text-black px-8 py-3 rounded-full text-xl font-medium hover:bg-gray-200 transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Donate
+          </button>
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-800 to-gray-600"></div>
-
-        {/* Animated overlay pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 -left-4 w-72 h-72 bg-white rounded-full mix-blend-overlay filter blur-xl animate-pulse"></div>
           <div className="absolute top-0 -right-4 w-72 h-72 bg-gray-300 rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-1000"></div>
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-white rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-500"></div>
         </div>
-
-        {/* Hero Content */}
         <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto">
           <h2 className="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-fadeInUp">
             Sowing hope <br />
             <span className="text-gray-300">cultivating the future </span>
           </h2>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-light leading-relaxed text-gray-200 animate-fadeInUp delay-300">
-            Bridging humanitarian aid and environmental conservation to
-            create sustainable futures for communities and ecosystems.
+            Bridging humanitarian aid and environmental conservation to create
+            sustainable futures for communities and ecosystems.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12 animate-fadeInUp delay-500">
             <button className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-xl hover:shadow-2xl">
@@ -151,8 +170,6 @@ export default function LandingPage() {
             </button>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
           <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
             <div className="w-1 h-3 bg-white rounded-full mt-1"></div>
@@ -173,9 +190,7 @@ export default function LandingPage() {
               natural world they depend on.
             </p>
           </div>
-
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Humanitarian Impact */}
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group">
               <div className="h-64 bg-gradient-to-br from-gray-800 to-black relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
@@ -217,8 +232,6 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-
-            {/* Ocean & Coastal Conservation */}
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group">
               <div className="h-64 bg-gradient-to-br from-gray-600 to-gray-900 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
@@ -243,7 +256,7 @@ export default function LandingPage() {
                 <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
-                    Beach Cleanup Drives
+                    Beach Cleanup
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
@@ -273,30 +286,31 @@ export default function LandingPage() {
             </h3>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               From clearing plastics off our shores to safeguarding sea life,
-              here&apos;s how we&apos;ve made waves together.
+              here’s how we’ve made waves together.
             </p>
           </div>
-
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
             <div className="text-center bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 transform hover:scale-105">
-              <div className="text-5xl font-bold text-black mb-2">120+</div>
+              <div className="text-5xl font-bold text-black mb-2">50+</div>
               <div className="text-gray-700 font-medium">Beach Cleanups</div>
               <div className="text-sm text-gray-500 mt-1">events run</div>
             </div>
             <div className="text-center bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 transform hover:scale-105">
-              <div className="text-5xl font-bold text-black mb-2">50T+</div>
-              <div className="text-gray-700 font-medium">Debris Removed</div>
+              <div className="text-5xl font-bold text-black mb-2">25T+</div>
+              <div className="text-gray-700 font-medium">
+                Tons of Debris Removed
+              </div>
               <div className="text-sm text-gray-500 mt-1">from our coasts</div>
             </div>
             <div className="text-center bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 transform hover:scale-105">
-              <div className="text-5xl font-bold text-black mb-2">1K+</div>
-              <div className="text-gray-700 font-medium">Members Trained</div>
+              <div className="text-5xl font-bold text-black mb-2">500+</div>
+              <div className="text-gray-700 font-medium">Attendees</div>
               <div className="text-sm text-gray-500 mt-1">
-                in sustainable practices
+                in the beach Cleanups
               </div>
             </div>
             <div className="text-center bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 transform hover:scale-105">
-              <div className="text-5xl font-bold text-black mb-2">10K+</div>
+              <div className="text-5xl font-bold text-red mb-2">100+</div>
               <div className="text-gray-700 font-medium">
                 Families Supported
               </div>
@@ -392,9 +406,6 @@ export default function LandingPage() {
             <button className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex-1 shadow-xl hover:shadow-2xl">
               Donate Now
             </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105 flex-1">
-              Get Involved
-            </button>
           </div>
         </div>
       </section>
@@ -411,8 +422,8 @@ export default function LandingPage() {
               how we can work together.
             </p>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Email Card */}
             <div className="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
               <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Mail className="h-8 w-8 text-white" />
@@ -422,134 +433,40 @@ export default function LandingPage() {
                 Get in touch for partnerships, volunteering, or general
                 inquiries.
               </p>
-              <p className="text-black font-semibold">4natureandus@gmail.com</p>
+              <a
+                href="mailto:4natureandus@gmail.com"
+                className="text-black font-semibold hover:underline"
+              >
+                4natureandus@gmail.com
+              </a>
             </div>
 
+            {/* Instagram Card */}
             <div className="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
-              <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <MapPin className="h-8 w-8 text-white" />
+              <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Instagram className="h-8 w-8 text-white" />
               </div>
-              <h4 className="text-xl font-bold text-black mb-3">Find Us</h4>
+              <h4 className="text-xl font-bold text-black mb-3">Follow Us</h4>
               <p className="text-gray-600 mb-4">
-                Visit our regional headquarters or connect with local teams.
+                Support us by giving us a follow and keeping up with the latest
+                posts
               </p>
-              <p className="text-black font-semibold">Latin America Office</p>
+              <a
+                href="https://www.instagram.com/4naturepr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-black font-semibold hover:underline"
+              >
+                @4naturepr
+              </a>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Instagram Section */}
-      <section id="social" className="py-12 bg-white border-t border-gray-200">
-        <div className="container mx-auto px-6 text-center">
-          <h3 className="text-3xl font-bold text-black mb-4">
-            Follow Us on Instagram
-          </h3>
-          <a
-            href="https://www.instagram.com/4naturepr/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 text-black hover:text-gray-700 transition-all duration-300 transform hover:scale-105"
-          >
-            <Instagram className="h-8 w-8" />
-            <span className="text-lg font-medium">@4naturepr</span>
-          </a>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="bg-black text-white py-12">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <Leaf className="h-5 w-5 text-black" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold">4Nature</h4>
-                </div>
-              </div>
-              <p className="text-gray-400 leading-relaxed">
-                Bridging humanitarian aid and environmental conservation to
-                create sustainable futures across Latin America.
-              </p>
-            </div>
-            <div>
-              <h5 className="font-semibold mb-4 text-white">Quick Links</h5>
-              <div className="space-y-2 text-sm">
-                <div>
-                  <a
-                    href="#about"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    About Us
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#mission"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Our Work
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#impact"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Impact Stories
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#contact"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Contact
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h5 className="font-semibold mb-4 text-white">Get Involved</h5>
-              <div className="space-y-2 text-sm">
-                <div>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Donate
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Volunteer
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Partner With Us
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Newsletter
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
               © 2025 4Nature. All rights reserved.
