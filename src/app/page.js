@@ -273,7 +273,7 @@ export default function LandingPage() {
             </h3>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               From clearing plastics off our shores to safeguarding sea life,
-              here's how we've made waves together.
+              here&apos;s how we&apos;ve made waves together.
             </p>
           </div>
 
@@ -404,10 +404,10 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h3 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              Let's Connect
+              Let&apos;s Connect
             </h3>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Ready to join our mission? We'd love to hear from you and explore
+              Ready to join our mission? We&apos;d love to hear from you and explore
               how we can work together.
             </p>
           </div>
