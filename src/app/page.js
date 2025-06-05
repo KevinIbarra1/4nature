@@ -195,9 +195,6 @@ export default function LandingPage() {
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group">
               <div className="h-64 bg-gradient-to-br from-gray-800 to-black relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <Heart className="h-12 w-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
-                </div>
               </div>
               <div className="p-8">
                 <div className="flex items-center mb-6">
@@ -236,9 +233,6 @@ export default function LandingPage() {
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group">
               <div className="h-64 bg-gradient-to-br from-gray-600 to-gray-900 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <Leaf className="h-12 w-12 mb-2 group-hover:scale-110 transition-transform duration-300" />
-                </div>
               </div>
               <div className="p-8">
                 <div className="flex items-center mb-6">
@@ -335,9 +329,9 @@ export default function LandingPage() {
               </h3>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 Founded on the understanding that human wellbeing and
-                environmental health are fundamentally connected, 4Nature PR works
-                hand-in-hand with communities across Latin America to create
-                lasting, positive change.
+                environmental health are fundamentally connected, 4Nature PR
+                works hand-in-hand with communities across Latin America to
+                create lasting, positive change.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 Our integrated approach ensures that every humanitarian project
@@ -419,8 +413,8 @@ export default function LandingPage() {
               Let&apos;s Connect
             </h3>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Ready to join our mission? We&apos;d love to hear from you and explore
-              how we can work together.
+              Ready to join our mission? We&apos;d love to hear from you and
+              explore how we can work together.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
