@@ -13,9 +13,19 @@ import {
   Instagram,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
+
+
+
+  /* gradient wave animation (Ocean card) */
+  const waveAnim = {
+    backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+  };
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -23,10 +33,18 @@ export default function LandingPage() {
     } else {
       document.body.classList.remove("overflow-hidden");
     }
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
+    return () => document.body.classList.remove("overflow-hidden");
   }, [isMenuOpen]);
+
+  /* ---------- animation helpers ---------- */
+  const cardVariants = {
+    offscreen: { opacity: 0, y: 60 },
+    onscreen: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
   return (
     <div className="min-h-screen bg-white scroll-smooth">
@@ -43,42 +61,26 @@ export default function LandingPage() {
                 className="rounded-full object-cover"
                 priority
               />
-              {/* Always show the title, even on mobile */}
-              <div>
-                <h1 className="text-2xl font-bold text-black">4 Nature PR</h1>
-              </div>
+              <h1 className="text-2xl font-bold text-black">4 Nature PR</h1>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
-              <a
-                href="#about"
-                className="text-gray-700 hover:text-black font-medium transition-all duration-300 relative group"
-              >
-                About
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              <a
-                href="#mission"
-                className="text-gray-700 hover:text-black font-medium transition-all duration-300 relative group"
-              >
-                Our Work
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              <a
-                href="#impact"
-                className="text-gray-700 hover:text-black font-medium transition-all duration-300 relative group"
-              >
-                Impact
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              <a
-                href="#contact"
-                className="text-gray-700 hover:text-black font-medium transition-all duration-300 relative group"
-              >
-                Contact
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-              </a>
+              {[
+                ["About", "#about"],
+                ["Our Work", "#mission"],
+                ["Impact", "#impact"],
+                ["Contact", "#contact"],
+              ].map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="text-gray-700 hover:text-black font-medium transition-all duration-300 relative group"
+                >
+                  {label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
               <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition-all duration-300 font-medium transform hover:scale-105 shadow-lg hover:shadow-xl">
                 Donate
               </button>
@@ -111,34 +113,21 @@ export default function LandingPage() {
           </button>
         </div>
         <div className="flex flex-col items-center justify-center h-full space-y-8">
-          <a
-            href="#about"
-            className="text-white text-2xl hover:text-gray-300 transition-colors"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            About
-          </a>
-          <a
-            href="#mission"
-            className="text-white text-2xl hover:text-gray-300 transition-colors"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Our Work
-          </a>
-          <a
-            href="#impact"
-            className="text-white text-2xl hover:text-gray-300 transition-colors"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Impact
-          </a>
-          <a
-            href="#contact"
-            className="text-white text-2xl hover:text-gray-300 transition-colors"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Contact
-          </a>
+          {[
+            ["About", "#about"],
+            ["Our Work", "#mission"],
+            ["Impact", "#impact"],
+            ["Contact", "#contact"],
+          ].map(([label, href]) => (
+            <a
+              key={label}
+              href={href}
+              className="text-white text-2xl hover:text-gray-300 transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {label}
+            </a>
+          ))}
           <button
             className="bg-white text-black px-8 py-3 rounded-full text-xl font-medium hover:bg-gray-200 transition-colors"
             onClick={() => setIsMenuOpen(false)}
@@ -179,6 +168,7 @@ export default function LandingPage() {
       </section>
 
       {/* Mission Section */}
+      {/* ───────── Mission Section ───────── */}
       <section id="mission" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
@@ -191,11 +181,34 @@ export default function LandingPage() {
               natural world they depend on.
             </p>
           </div>
+
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group">
-              <div className="h-64 bg-gradient-to-br from-gray-800 to-black relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            {/* ───── Humanitarian Impact ───── */}
+            <motion.div
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
+              variants={cardVariants}
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ once: true, amount: 0.35 }}
+              whileHover={{ scale: 1.03 }}
+            >
+              {/* animated header */}
+              <div className="relative h-64 overflow-hidden flex items-center justify-center bg-gradient-to-br from-rose-600 to-pink-500">
+                {/* pulsing heart */}
+                <motion.div
+                  animate={{ scale: [1, 1.15, 1] }}
+                  transition={{
+                    duration: 2.4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="text-white"
+                >
+                  <Heart className="w-32 h-32" strokeWidth={1.5} />
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               </div>
+
               <div className="p-8">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4">
@@ -211,36 +224,67 @@ export default function LandingPage() {
                   relief that builds lasting resilience.
                 </p>
                 <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
-                    Medical outreach
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
-                    Education programs
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
-                    Emergency response
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
-                    Community development
-                  </div>
+                  {[
+                    "Medical outreach",
+                    "Education programs",
+                    "Emergency response",
+                    "Community development",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center">
+                      <span className="w-2 h-2 bg-black rounded-full mr-2" />
+                      {item}
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group">
-              <div className="h-64 bg-gradient-to-br from-gray-600 to-gray-900 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              </div>
+            </motion.div>
+
+            {/* ───── Ocean & Coastal Conservation ───── */}
+            <motion.div
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
+              variants={cardVariants}
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ once: true, amount: 0.35 }}
+              whileHover={{ scale: 1.03 }}
+            >
+              {/* animated header */}
+              <motion.div
+                className="relative h-64 overflow-hidden"
+                animate={waveAnim}
+                transition={{
+                  duration: 18,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                style={{
+                  backgroundImage:
+                    "linear-gradient(135deg,#0284c7 0%,#14b8a6 25%,#0369a1 50%,#0ea5e9 75%,#0284c7 100%)",
+                  backgroundSize: "200% 200%",
+                }}
+              >
+                {/* leaf icon floating */}
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center text-white"
+                  animate={{ y: ["0%", "-8%", "0%"] }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Leaf className="w-28 h-28" strokeWidth={1.4} />
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </motion.div>
+
               <div className="p-8">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4">
                     <Leaf className="h-6 w-6 text-black" />
                   </div>
                   <h4 className="text-2xl font-bold text-black">
-                    Ocean & Coastal Conservation
+                    Ocean &amp; Coastal Conservation
                   </h4>
                 </div>
                 <p className="text-gray-600 mb-6 leading-relaxed">
@@ -249,70 +293,20 @@ export default function LandingPage() {
                   and raise awareness about ocean health.
                 </p>
                 <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
-                    Beach Cleanup
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
-                    Pollution Awareness Campaigns
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
-                    Sea Turtle Protection
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-black rounded-full mr-2"></div>
-                    Marine Education
-                  </div>
+                  {[
+                    "Beach Cleanup",
+                    "Pollution Awareness Campaigns",
+                    "Sea Turtle Protection",
+                    "Marine Education",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center">
+                      <span className="w-2 h-2 bg-black rounded-full mr-2" />
+                      {item}
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Impact Section */}
-      <section id="impact" className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              Our Environmental Impact
-            </h3>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              From clearing plastics off our shores to safeguarding sea life,
-              here’s how we’ve made waves together.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            <div className="text-center bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 transform hover:scale-105">
-              <div className="text-5xl font-bold text-black mb-2">50+</div>
-              <div className="text-gray-700 font-medium">Beach Cleanups</div>
-              <div className="text-sm text-gray-500 mt-1">events run</div>
-            </div>
-            <div className="text-center bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 transform hover:scale-105">
-              <div className="text-5xl font-bold text-black mb-2">25T+</div>
-              <div className="text-gray-700 font-medium">
-                Tons of Debris Removed
-              </div>
-              <div className="text-sm text-gray-500 mt-1">from our coasts</div>
-            </div>
-            <div className="text-center bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 transform hover:scale-105">
-              <div className="text-5xl font-bold text-black mb-2">500+</div>
-              <div className="text-gray-700 font-medium">Attendees</div>
-              <div className="text-sm text-gray-500 mt-1">
-                in the beach Cleanups
-              </div>
-            </div>
-            <div className="text-center bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 transform hover:scale-105">
-              <div className="text-5xl font-bold text-red mb-2">100+</div>
-              <div className="text-gray-700 font-medium">
-                Families Supported
-              </div>
-              <div className="text-sm text-gray-500 mt-1">
-                through local programs
-              </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
