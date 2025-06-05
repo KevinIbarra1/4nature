@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "4Nature",
+  title: "4NaturePR",
   description: "Bridging humanitarian aid and environmental conservation.",
 };
 

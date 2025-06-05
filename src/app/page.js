@@ -43,8 +43,9 @@ export default function LandingPage() {
                 className="rounded-full object-cover"
                 priority
               />
-              <div className="hidden sm:block">
-                <h1 className="text-2xl font-bold text-black">4Nature</h1>
+              {/* Always show the title, even on mobile */}
+              <div>
+                <h1 className="text-2xl font-bold text-black">4 Nature PR</h1>
               </div>
             </div>
 
@@ -334,7 +335,7 @@ export default function LandingPage() {
               </h3>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 Founded on the understanding that human wellbeing and
-                environmental health are fundamentally connected, 4Nature works
+                environmental health are fundamentally connected, 4Nature PR works
                 hand-in-hand with communities across Latin America to create
                 lasting, positive change.
               </p>
@@ -469,7 +470,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2025 4Nature. All rights reserved.
+              © 2025 4Nature PR. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0 text-sm">
               <a
