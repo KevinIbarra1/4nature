@@ -251,84 +251,85 @@ export default function LandingPage() {
             </motion.div>
 
             {/* ───── Ocean & Coastal Conservation ───── */}
-            <motion.div
-              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
-              variants={cardVariants}
-              initial="offscreen"
-              whileInView="onscreen"
-              viewport={{ once: true, amount: 0.35 }}
-              whileHover={{ scale: 1.03 }}
-            >
-              {/* animated header */}
-              <motion.div
-                className="relative h-64 overflow-hidden"
-                animate={waveAnim}
-                transition={{
-                  duration: 18,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                style={{
-                  backgroundImage:
-                    "linear-gradient(135deg,#0284c7 0%,#14b8a6 25%,#0369a1 50%,#0ea5e9 75%,#0284c7 100%)",
-                  backgroundSize: "200% 200%",
-                }}
-              >
-                {/* leaf icon floating */}
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center text-white"
-                  animate={{ y: ["0%", "-8%", "0%"] }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <Leaf className="w-28 h-28" strokeWidth={1.4} />
-                </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              </motion.div>
+          <motion.div
+  className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
+  variants={cardVariants}
+  initial="offscreen"
+  whileInView="onscreen"
+  viewport={{ once: true, amount: 0.35 }}
+  whileHover={{ scale: 1.03 }}
+>
+  {/* animated header */}
+  <motion.div
+    className="relative h-64 overflow-hidden"
+    animate={waveAnim}
+    transition={{
+      duration: 18,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+    style={{
+      backgroundImage:
+        "linear-gradient(135deg,#0284c7 0%,#14b8a6 25%,#0369a1 50%,#0ea5e9 75%,#0284c7 100%)",
+      backgroundSize: "200% 200%",
+    }}
+  >
+    {/* leaf icon floating */}
+    <motion.div
+      className="absolute inset-0 flex items-center justify-center text-white"
+      animate={{ y: ["0%", "-8%", "0%"] }}
+      transition={{
+        duration: 6,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
+      <Leaf className="w-28 h-28" strokeWidth={1.4} />
+    </motion.div>
+    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+  </motion.div>
 
-              <div className="p-8">
-                <div className="flex items-center mb-6">
-                  <motion.div
-                    className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4 cursor-pointer"
-                    onClick={() => setLeafLiked((prev) => !prev)}
-                    animate={{ scale: leafLiked ? 1.3 : 1 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    whileTap={{ scale: 1.1 }}
-                  >
-                    <Leaf
-                      className="h-6 w-6"
-                      strokeWidth={1.4}
-                      color={leafLiked ? "#10B981" : "#000"}
-                      fill={leafLiked ? "#10B981" : "none"}
-                    />
-                  </motion.div>
-                  <h4 className="text-2xl font-bold text-black">
-                    Ocean &amp; Coastal Conservation
-                  </h4>
-                </div>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Cleaning beaches and protecting sea life through
-                  community-driven initiatives that restore marine ecosystems
-                  and raise awareness about ocean health.
-                </p>
-                <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
-                  {[
-                    "Beach Cleanup",
-                    "Pollution Awareness Campaigns",
-                    "Sea Turtle Protection",
-                    "Marine Education",
-                  ].map((item) => (
-                    <div key={item} className="flex items-center">
-                      <span className="w-2 h-2 bg-black rounded-full mr-2" />
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+  <div className="p-8">
+    <div className="flex items-center mb-6">
+      <motion.div
+        className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4 cursor-pointer"
+        onClick={() => setLeafLiked(prev => !prev)}
+        animate={{ scale: leafLiked ? 1.3 : 1 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        whileTap={{ scale: 1.1 }}
+      >
+        <Leaf
+          className="h-6 w-6"
+          strokeWidth={1.4}
+          fill={leafLiked ? "#10B981" : "none"}
+          stroke={leafLiked ? "#047857" : "#000"}
+        />
+      </motion.div>
+      <h4 className="text-2xl font-bold text-black">
+        Ocean &amp; Coastal Conservation
+      </h4>
+    </div>
+    <p className="text-gray-600 mb-6 leading-relaxed">
+      Cleaning beaches and protecting sea life through
+      community-driven initiatives that restore marine ecosystems
+      and raise awareness about ocean health.
+    </p>
+    <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
+      {[
+        "Beach Cleanup",
+        "Pollution Awareness Campaigns",
+        "Sea Turtle Protection",
+        "Marine Education",
+      ].map(item => (
+        <div key={item} className="flex items-center">
+          <span className="w-2 h-2 bg-black rounded-full mr-2" />
+          {item}
+        </div>
+      ))}
+    </div>
+  </div>
+</motion.div>
+
           </div>
         </div>
       </section>
