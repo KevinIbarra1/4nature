@@ -17,10 +17,8 @@ import { motion } from "framer-motion";
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-
-
-
+  const [liked, setLiked] = useState(false);
+  const [leafLiked, setLeafLiked] = useState(false);
 
   /* gradient wave animation (Ocean card) */
   const waveAnim = {
@@ -52,16 +50,18 @@ export default function LandingPage() {
       <header className="absolute top-0 left-0 right-0 z-50 bg-white bg-opacity-95 backdrop-blur-sm border-b border-gray-100">
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
+            {/* Logo + Title */}
             <div className="flex items-center space-x-3">
-              <Image
-                src="/4natureLogo.png"
-                alt="4Nature Logo"
-                width={48}
-                height={48}
-                className="rounded-full object-cover"
-                priority
-              />
-              <h1 className="text-2xl font-bold text-black">4 Nature PR</h1>
+              <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                <Image
+                  src="/4natureLogo.png"
+                  alt="4Nature Logo"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <h1 className="text-2xl font-bold text-black">4NaturePR</h1>
             </div>
 
             {/* Desktop Navigation */}
@@ -88,7 +88,7 @@ export default function LandingPage() {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors text-black"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
@@ -211,9 +211,20 @@ export default function LandingPage() {
 
               <div className="p-8">
                 <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4">
-                    <Heart className="h-6 w-6 text-black" />
-                  </div>
+                  <motion.div
+                    className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4 cursor-pointer"
+                    onClick={() => setLiked((prev) => !prev)}
+                    animate={{ scale: liked ? 1.3 : 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    whileTap={{ scale: 1.1 }}
+                  >
+                    <Heart
+                      className="h-6 w-6"
+                      strokeWidth={1.5}
+                      color={liked ? "#e0245e" : "#000"}
+                      fill={liked ? "#e0245e" : "none"}
+                    />
+                  </motion.div>
                   <h4 className="text-2xl font-bold text-black">
                     Humanitarian Impact
                   </h4>
@@ -280,9 +291,20 @@ export default function LandingPage() {
 
               <div className="p-8">
                 <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4">
-                    <Leaf className="h-6 w-6 text-black" />
-                  </div>
+                  <motion.div
+                    className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4 cursor-pointer"
+                    onClick={() => setLeafLiked((prev) => !prev)}
+                    animate={{ scale: leafLiked ? 1.3 : 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    whileTap={{ scale: 1.1 }}
+                  >
+                    <Leaf
+                      className="h-6 w-6"
+                      strokeWidth={1.4}
+                      color={leafLiked ? "#10B981" : "#000"}
+                      fill={leafLiked ? "#10B981" : "none"}
+                    />
+                  </motion.div>
                   <h4 className="text-2xl font-bold text-black">
                     Ocean &amp; Coastal Conservation
                   </h4>
@@ -323,7 +345,7 @@ export default function LandingPage() {
               </h3>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 Founded on the understanding that human wellbeing and
-                environmental health are fundamentally connected, 4Nature PR
+                environmental health are fundamentally connected, 4NaturePR
                 works hand-in-hand with communities across Latin America to
                 create lasting, positive change.
               </p>
@@ -414,14 +436,23 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Email Card */}
             <div className="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
-              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Mail className="h-8 w-8 text-white" />
-              </div>
+              {/* Icon wrapped in the mailto link */}
+              <a
+                href="mailto:4natureandus@gmail.com"
+                className="inline-block mx-auto mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
+                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center">
+                  <Mail className="h-8 w-8 text-white" />
+                </div>
+              </a>
+
               <h4 className="text-xl font-bold text-black mb-3">Email Us</h4>
               <p className="text-gray-600 mb-4">
                 Get in touch for partnerships, volunteering, or general
                 inquiries.
               </p>
+
+              {/* Address link stays the same */}
               <a
                 href="mailto:4natureandus@gmail.com"
                 className="text-black font-semibold hover:underline"
@@ -432,14 +463,25 @@ export default function LandingPage() {
 
             {/* Instagram Card */}
             <div className="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Instagram className="h-8 w-8 text-white" />
-              </div>
+              {/* Icon wrapped in link */}
+              <a
+                href="https://www.instagram.com/4naturepr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mx-auto mb-6 group-hover:scale-110 transition-transform duration-300"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center">
+                  <Instagram className="h-8 w-8 text-white" />
+                </div>
+              </a>
+
               <h4 className="text-xl font-bold text-black mb-3">Follow Us</h4>
               <p className="text-gray-600 mb-4">
                 Support us by giving us a follow and keeping up with the latest
                 posts
               </p>
+
+              {/* Handle link stays the same */}
               <a
                 href="https://www.instagram.com/4naturepr/"
                 target="_blank"
@@ -458,22 +500,8 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2025 4Nature PR. All rights reserved.
+              © 2025 4NaturePR. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0 text-sm">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Terms of Service
-              </a>
-            </div>
           </div>
         </div>
       </footer>
