@@ -22,14 +22,14 @@ export default function LandingPage() {
   const [showDonateModal, setShowDonateModal] = useState(false);
 
   /* ───────── TEAM DATA ───────── */
-const teamMembers = [
-  { id: 1, name: "María Aguilar", image: "/Maria.webp" },
-  { id: 2, name: "Kevin Ibarra", image: "/IMG_2965.webp" },
-  { id: 3, name: "Naishka Rodríguez", image: "/IMG_2866.webp" },
-  { id: 4, name: "María Karla Vega", role: "Role", image: "/IMG_1997.webp" },
-  { id: 5, name: "Alejandro Durán", image: "/ElPrimo.webp" },
-  { id: 6, name: "Javier Guadalupe", image: "/1743489922011.webp" },
-];
+  const teamMembers = [
+    { id: 1, name: "María Aguilar", image: "/Maria.webp" },
+    { id: 2, name: "Kevin Ibarra", image: "/IMG_2965.webp" },
+    { id: 3, name: "Naishka Rodríguez", image: "/IMG_2866.webp" },
+    { id: 4, name: "Karla Vega", image: "/IMG_1997.webp" },
+    { id: 5, name: "Alejandro Durán", image: "/ElPrimo.webp" },
+    { id: 6, name: "Javier Guadalupe", image: "/1743489922011.webp" },
+  ];
 
   /* gradient wave animation (Ocean card) */
   const waveAnim = {
@@ -408,49 +408,45 @@ const teamMembers = [
         </div>
       </section>
 
-
-
-
-<section id="team" className="py-20 bg-white">
-  <div className="container mx-auto px-6">
-    <div className="text-center mb-16">
-      <h3 className="text-4xl md:text-5xl font-bold text-black mb-6">
-        Meet Our <span className="text-gray-600">Team</span>
-      </h3>
-      <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-        A diverse group of changemakers committed to a sustainable future.
-      </p>
-    </div>
-
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-      {teamMembers.map(({ id, name, role, image }) => (
-        <motion.div
-          key={id}
-          className="relative w-full pb-[100%] rounded-2xl overflow-hidden shadow-lg group"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          <Image
-            src={image}
-            alt={name}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-            priority={id === 1}
-          />
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <div className="text-center text-white px-2">
-              <h4 className="font-semibold text-lg">{name}</h4>
-              {role && <p className="text-sm text-gray-300">{role}</p>}
-            </div>
+      <section id="team" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl md:text-5xl font-bold text-black mb-6">
+              Meet Our <span className="text-gray-600">Team</span>
+            </h3>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              A diverse group of changemakers committed to a sustainable future.
+            </p>
           </div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
 
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {teamMembers.map(({ id, name, role, image }) => (
+              <motion.div
+                key={id}
+                className="relative w-full pb-[100%] rounded-2xl overflow-hidden shadow-lg group"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <Image
+                  src={image}
+                  alt={name}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  priority={id === 1}
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="text-center text-white px-2">
+                    <h4 className="font-semibold text-lg">{name}</h4>
+                    {role && <p className="text-sm text-gray-300">{role}</p>}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Call to Action */}
       <section className="py-20 bg-black text-white relative overflow-hidden">
