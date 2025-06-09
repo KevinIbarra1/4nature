@@ -21,6 +21,16 @@ export default function LandingPage() {
   const [leafLiked, setLeafLiked] = useState(false);
   const [showDonateModal, setShowDonateModal] = useState(false);
 
+  /* ───────── TEAM DATA ───────── */
+const teamMembers = [
+  { id: 1, name: "Member 1", role: "Role", image: "/Maria.jpeg" },
+  { id: 2, name: "Member 2", role: "Role", image: "/IMG_2965.jpg" },
+  { id: 3, name: "Member 3", role: "Role", image: "/IMG_2866.jpg" },
+  { id: 4, name: "Member 4", role: "Role", image: "/IMG_1997.jpeg" },
+  { id: 5, name: "Member 5", role: "Role", image: "/elPrimo.jpeg" },
+  { id: 6, name: "Member 6", role: "Role", image: "/1743489922011.jpg" },
+];
+
   /* gradient wave animation (Ocean card) */
   const waveAnim = {
     backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
@@ -398,6 +408,50 @@ export default function LandingPage() {
         </div>
       </section>
 
+
+
+
+<section id="team" className="py-20 bg-white">
+  <div className="container mx-auto px-6">
+    <div className="text-center mb-16">
+      <h3 className="text-4xl md:text-5xl font-bold text-black mb-6">
+        Meet Our <span className="text-gray-600">Team</span>
+      </h3>
+      <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        A diverse group of changemakers committed to a sustainable future.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {teamMembers.map(({ id, name, role, image }) => (
+        <motion.div
+          key={id}
+          className="relative w-full pb-[100%] rounded-2xl overflow-hidden shadow-lg group"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            priority={id === 1}
+          />
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div className="text-center text-white px-2">
+              <h4 className="font-semibold text-lg">{name}</h4>
+              {role && <p className="text-sm text-gray-300">{role}</p>}
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
       {/* Call to Action */}
       <section className="py-20 bg-black text-white relative overflow-hidden">
         <div className="absolute inset-0">
@@ -434,18 +488,18 @@ export default function LandingPage() {
             className="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-100 animate-in fade-in-0 zoom-in-95"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header with gradient background */}
-            <div className="bg-gradient-to-r from-blue-600 to-green-500 p-6 rounded-t-2xl text-white">
+            {/* Header with dark background */}
+            <div className="bg-black p-6 rounded-t-2xl text-white">
               <div className="flex justify-between items-center">
                 <div>
                   <h4 className="text-2xl font-bold mb-1">Support Our Cause</h4>
-                  <p className="text-blue-100 text-sm">
+                  <p className="text-gray-300 text-sm">
                     Choose your preferred payment method
                   </p>
                 </div>
                 <button
                   onClick={() => setShowDonateModal(false)}
-                  className="p-2 hover:bg-white/20 rounded-full transition-colors duration-200"
+                  className="p-2 hover:bg-gray-800 rounded-full transition-colors duration-200"
                   aria-label="Close modal"
                 >
                   <X className="h-5 w-5" />
@@ -461,13 +515,12 @@ export default function LandingPage() {
                   href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative block overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 p-4 text-white shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
+                  className="group relative block overflow-hidden rounded-xl bg-gray-900 border border-gray-700 p-4 text-white shadow-lg hover:shadow-xl hover:bg-black transform hover:scale-[1.02] transition-all duration-200"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-blue-700/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                   <div className="relative flex items-center justify-center space-x-3">
-                    <div className="bg-white/20 p-2 rounded-full">
+                    <div className="bg-gray-800 p-2 rounded-full">
                       <svg
-                        className="w-6 h-6"
+                        className="w-6 h-6 text-blue-600"
                         viewBox="0 0 24 24"
                         fill="currentColor"
                       >
@@ -476,7 +529,7 @@ export default function LandingPage() {
                     </div>
                     <div className="text-center">
                       <div className="font-semibold text-lg">PayPal</div>
-                      <div className="text-blue-100 text-sm">
+                      <div className="text-gray-400 text-sm">
                         Secure & trusted worldwide
                       </div>
                     </div>
@@ -488,13 +541,12 @@ export default function LandingPage() {
                   href="https://www.athmovil.com/4naturepr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative block overflow-hidden rounded-xl bg-gradient-to-r from-green-500 to-green-600 p-4 text-white shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
+                  className="group relative block overflow-hidden rounded-xl bg-gray-900 border border-gray-700 p-4 text-white shadow-lg hover:shadow-xl hover:bg-black transform hover:scale-[1.02] transition-all duration-200"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/80 to-green-600/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                   <div className="relative flex items-center justify-center space-x-3">
-                    <div className="bg-white/20 p-2 rounded-full">
+                    <div className="bg-gray-800 p-2 rounded-full">
                       <svg
-                        className="w-6 h-6"
+                        className="w-6 h-6 text-orange-500"
                         viewBox="0 0 24 24"
                         fill="currentColor"
                       >
@@ -503,7 +555,7 @@ export default function LandingPage() {
                     </div>
                     <div className="text-center">
                       <div className="font-semibold text-lg">ATH Móvil</div>
-                      <div className="text-green-100 text-sm">
+                      <div className="text-gray-400 text-sm">
                         Popular in Puerto Rico
                       </div>
                     </div>
@@ -512,11 +564,11 @@ export default function LandingPage() {
               </div>
 
               {/* Security Note */}
-              <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                <div className="flex items-center space-x-2 text-gray-600">
-                  <div className="bg-green-100 p-1 rounded-full">
+              <div className="mt-6 p-4 bg-gray-100 rounded-xl border border-gray-200">
+                <div className="flex items-center space-x-2 text-gray-700">
+                  <div className="bg-gray-300 p-1 rounded-full">
                     <svg
-                      className="w-4 h-4 text-green-600"
+                      className="w-4 h-4 text-gray-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
