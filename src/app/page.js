@@ -23,12 +23,12 @@ export default function LandingPage() {
 
   /* ───────── TEAM DATA ───────── */
 const teamMembers = [
-  { id: 1, name: "Member 1", role: "Role", image: "/Maria.webp" },
-  { id: 2, name: "Member 2", role: "Role", image: "/IMG_2965.webp" },
-  { id: 3, name: "Member 3", role: "Role", image: "/IMG_2866.webp" },
-  { id: 4, name: "Member 4", role: "Role", image: "/IMG_1997.webp" },
-  { id: 5, name: "Member 5", role: "Role", image: "/elPrimo.webp" },
-  { id: 6, name: "Member 6", role: "Role", image: "/1743489922011.webp" },
+  { id: 1, name: "María Aguilar", image: "/Maria.webp" },
+  { id: 2, name: "Kevin Ibarra", image: "/IMG_2965.webp" },
+  { id: 3, name: "Naishka Rodríguez", image: "/IMG_2866.webp" },
+  { id: 4, name: "María Karla Vega", role: "Role", image: "/IMG_1997.webp" },
+  { id: 5, name: "Alejandro Durán", image: "/elPrimo.webp" },
+  { id: 6, name: "Javier Guadalupe", image: "/1743489922011.webp" },
 ];
 
   /* gradient wave animation (Ocean card) */
