@@ -19,6 +19,7 @@ export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [liked, setLiked] = useState(false);
   const [leafLiked, setLeafLiked] = useState(false);
+  const [showDonateModal, setShowDonateModal] = useState(false);
 
   /* gradient wave animation (Ocean card) */
   const waveAnim = {
@@ -251,85 +252,84 @@ export default function LandingPage() {
             </motion.div>
 
             {/* ───── Ocean & Coastal Conservation ───── */}
-          <motion.div
-  className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
-  variants={cardVariants}
-  initial="offscreen"
-  whileInView="onscreen"
-  viewport={{ once: true, amount: 0.35 }}
-  whileHover={{ scale: 1.03 }}
->
-  {/* animated header */}
-  <motion.div
-    className="relative h-64 overflow-hidden"
-    animate={waveAnim}
-    transition={{
-      duration: 18,
-      repeat: Infinity,
-      ease: "linear",
-    }}
-    style={{
-      backgroundImage:
-        "linear-gradient(135deg,#0284c7 0%,#14b8a6 25%,#0369a1 50%,#0ea5e9 75%,#0284c7 100%)",
-      backgroundSize: "200% 200%",
-    }}
-  >
-    {/* leaf icon floating */}
-    <motion.div
-      className="absolute inset-0 flex items-center justify-center text-white"
-      animate={{ y: ["0%", "-8%", "0%"] }}
-      transition={{
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    >
-      <Leaf className="w-28 h-28" strokeWidth={1.4} />
-    </motion.div>
-    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-  </motion.div>
+            <motion.div
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
+              variants={cardVariants}
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ once: true, amount: 0.35 }}
+              whileHover={{ scale: 1.03 }}
+            >
+              {/* animated header */}
+              <motion.div
+                className="relative h-64 overflow-hidden"
+                animate={waveAnim}
+                transition={{
+                  duration: 18,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                style={{
+                  backgroundImage:
+                    "linear-gradient(135deg,#0284c7 0%,#14b8a6 25%,#0369a1 50%,#0ea5e9 75%,#0284c7 100%)",
+                  backgroundSize: "200% 200%",
+                }}
+              >
+                {/* leaf icon floating */}
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center text-white"
+                  animate={{ y: ["0%", "-8%", "0%"] }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Leaf className="w-28 h-28" strokeWidth={1.4} />
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </motion.div>
 
-  <div className="p-8">
-    <div className="flex items-center mb-6">
-      <motion.div
-        className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4 cursor-pointer"
-        onClick={() => setLeafLiked(prev => !prev)}
-        animate={{ scale: leafLiked ? 1.3 : 1 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        whileTap={{ scale: 1.1 }}
-      >
-        <Leaf
-          className="h-6 w-6"
-          strokeWidth={1.4}
-          fill={leafLiked ? "#10B981" : "none"}
-          stroke={leafLiked ? "#047857" : "#000"}
-        />
-      </motion.div>
-      <h4 className="text-2xl font-bold text-black">
-        Ocean &amp; Coastal Conservation
-      </h4>
-    </div>
-    <p className="text-gray-600 mb-6 leading-relaxed">
-      Cleaning beaches and protecting sea life through
-      community-driven initiatives that restore marine ecosystems
-      and raise awareness about ocean health.
-    </p>
-    <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
-      {[
-        "Beach Cleanup",
-        "Pollution Awareness Campaigns",
-        "Sea Turtle Protection",
-        "Marine Education",
-      ].map(item => (
-        <div key={item} className="flex items-center">
-          <span className="w-2 h-2 bg-black rounded-full mr-2" />
-          {item}
-        </div>
-      ))}
-    </div>
-  </div>
-</motion.div>
-
+              <div className="p-8">
+                <div className="flex items-center mb-6">
+                  <motion.div
+                    className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4 cursor-pointer"
+                    onClick={() => setLeafLiked((prev) => !prev)}
+                    animate={{ scale: leafLiked ? 1.3 : 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    whileTap={{ scale: 1.1 }}
+                  >
+                    <Leaf
+                      className="h-6 w-6"
+                      strokeWidth={1.4}
+                      fill={leafLiked ? "#10B981" : "none"}
+                      stroke={leafLiked ? "#047857" : "#000"}
+                    />
+                  </motion.div>
+                  <h4 className="text-2xl font-bold text-black">
+                    Ocean &amp; Coastal Conservation
+                  </h4>
+                </div>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Cleaning beaches and protecting sea life through
+                  community-driven initiatives that restore marine ecosystems
+                  and raise awareness about ocean health.
+                </p>
+                <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                  {[
+                    "Beach Cleanup",
+                    "Pollution Awareness Campaigns",
+                    "Sea Turtle Protection",
+                    "Marine Education",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center">
+                      <span className="w-2 h-2 bg-black rounded-full mr-2" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -415,13 +415,140 @@ export default function LandingPage() {
             Latin America.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-lg mx-auto">
-            <button className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex-1 shadow-xl hover:shadow-2xl">
+            <button
+              onClick={() => setShowDonateModal(true)}
+              className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex-1 shadow-xl hover:shadow-2xl"
+            >
               Donate Now
             </button>
           </div>
         </div>
       </section>
+      {/* Enhanced Donate Modal */}
+      {showDonateModal && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          onClick={() => setShowDonateModal(false)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-100 animate-in fade-in-0 zoom-in-95"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header with gradient background */}
+            <div className="bg-gradient-to-r from-blue-600 to-green-500 p-6 rounded-t-2xl text-white">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h4 className="text-2xl font-bold mb-1">Support Our Cause</h4>
+                  <p className="text-blue-100 text-sm">
+                    Choose your preferred payment method
+                  </p>
+                </div>
+                <button
+                  onClick={() => setShowDonateModal(false)}
+                  className="p-2 hover:bg-white/20 rounded-full transition-colors duration-200"
+                  aria-label="Close modal"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
 
+            {/* Content */}
+            <div className="p-6">
+              <div className="space-y-4">
+                {/* PayPal Option */}
+                <a
+                  href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 p-4 text-white shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-blue-700/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                  <div className="relative flex items-center justify-center space-x-3">
+                    <div className="bg-white/20 p-2 rounded-full">
+                      <svg
+                        className="w-6 h-6"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h8.418c2.508 0 4.684.95 5.82 2.542 1.048 1.467 1.097 3.4.133 5.302.964.428 1.72 1.266 2.099 2.498.4 1.304.202 2.705-.542 3.946-1.21 2.016-3.564 3.054-6.805 3.001h-1.564a.875.875 0 0 0-.862.734l-.306 1.944-.18 1.144a.424.424 0 0 1-.419.366z" />
+                      </svg>
+                    </div>
+                    <div className="text-center">
+                      <div className="font-semibold text-lg">PayPal</div>
+                      <div className="text-blue-100 text-sm">
+                        Secure & trusted worldwide
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                {/* ATH Móvil Option */}
+                <a
+                  href="https://www.athmovil.com/4naturepr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block overflow-hidden rounded-xl bg-gradient-to-r from-green-500 to-green-600 p-4 text-white shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/80 to-green-600/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                  <div className="relative flex items-center justify-center space-x-3">
+                    <div className="bg-white/20 p-2 rounded-full">
+                      <svg
+                        className="w-6 h-6"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                      </svg>
+                    </div>
+                    <div className="text-center">
+                      <div className="font-semibold text-lg">ATH Móvil</div>
+                      <div className="text-green-100 text-sm">
+                        Popular in Puerto Rico
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              {/* Security Note */}
+              <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="flex items-center space-x-2 text-gray-600">
+                  <div className="bg-green-100 p-1 rounded-full">
+                    <svg
+                      className="w-4 h-4 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="font-medium text-sm">Secure Payment</div>
+                    <div className="text-xs text-gray-500">
+                      Your transaction is protected and encrypted
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Cancel Button */}
+              <button
+                onClick={() => setShowDonateModal(false)}
+                className="w-full mt-4 py-3 text-gray-600 hover:text-gray-800 font-medium transition-colors duration-200"
+              >
+                Maybe later
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
