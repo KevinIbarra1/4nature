@@ -27,7 +27,7 @@ const teamMembers = [
   { id: 2, name: "Kevin Ibarra", image: "/IMG_2965.webp" },
   { id: 3, name: "Naishka Rodríguez", image: "/IMG_2866.webp" },
   { id: 4, name: "María Karla Vega", role: "Role", image: "/IMG_1997.webp" },
-  { id: 5, name: "Alejandro Durán", image: "/elPrimo.webp" },
+  { id: 5, name: "Alejandro Durán", image: "/ElPrimo.webp" },
   { id: 6, name: "Javier Guadalupe", image: "/1743489922011.webp" },
 ];
 
