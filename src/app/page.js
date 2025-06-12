@@ -177,7 +177,7 @@ export default function LandingPage() {
         <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
           <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-6 animate-fadeInUp">
             Sowing hope <br />
-            <span className="text-gray-400">cultivating the future</span>
+            <span className="text-white-300">cultivating the future</span>
           </h2>
           <p className="text-xl md:text-2xl font-light leading-relaxed text-gray-300 max-w-3xl mx-auto mb-8 animate-fadeInUp delay-300">
             Bridging humanitarian aid and environmental conservation to create
