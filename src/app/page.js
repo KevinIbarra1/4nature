@@ -65,7 +65,7 @@ export default function LandingPage() {
             <div className="flex items-center space-x-3">
               <div className="relative w-12 h-12 rounded-full overflow-hidden">
                 <Image
-                  src="/4natureLogo.png"
+                  src="/4natureLogoWeb.webp"
                   alt="4Nature Logo"
                   fill
                   className="object-cover"
