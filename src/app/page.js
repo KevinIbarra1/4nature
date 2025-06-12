@@ -17,9 +17,18 @@ import { motion } from "framer-motion";
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false); // NEW
   const [liked, setLiked] = useState(false);
   const [leafLiked, setLeafLiked] = useState(false);
   const [showDonateModal, setShowDonateModal] = useState(false);
+
+  /* ───────── SCROLL HANDLER (navbar transparency) ───────── */
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 80);
+    handleScroll(); // run once on mount
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   /* ───────── TEAM DATA ───────── */
   const teamMembers = [
@@ -44,12 +53,9 @@ export default function LandingPage() {
     backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
   };
 
+  /* Disable body scroll when mobile menu is open */
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
+    document.body.classList.toggle("overflow-hidden", isMenuOpen);
     return () => document.body.classList.remove("overflow-hidden");
   }, [isMenuOpen]);
 
@@ -66,7 +72,13 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white scroll-smooth">
       {/* Header */}
-      <header className="absolute top-0 left-0 right-0 z-50 bg-white bg-opacity-95 backdrop-blur-sm border-b border-gray-100">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-white bg-opacity-95 backdrop-blur-sm border-b border-gray-100 shadow-sm"
+            : "bg-transparent"
+        }`}
+      >
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             {/* Logo + Title */}
@@ -80,7 +92,7 @@ export default function LandingPage() {
                   priority
                 />
               </div>
-              <h1 className="text-2xl font-bold text-black">4NaturePR</h1>
+              <h1 className="text-2xl font-bold text-white">4NaturePR</h1>
             </div>
 
             {/* Desktop Navigation */}
@@ -107,7 +119,11 @@ export default function LandingPage() {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors text-black"
+              className={`lg:hidden p-2 rounded-lg transition-colors ${
+                scrolled
+                  ? "text-black hover:bg-gray-100"
+                  : "text-white hover:bg-white/20"
+              }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
@@ -157,7 +173,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-     {/* ================= HERO SECTION (video background) ================= */}
+      {/* ================= HERO SECTION (video background) ================= */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* ► Video */}
         <video
@@ -170,7 +186,7 @@ export default function LandingPage() {
         >
           {/* MOV files often play fine in Safari but not everywhere.
              If you can, convert to MP4/WebM and add extra <source> tags. */}
-          <source src="/temp_video_for_share(2).mov" type="video/mp4" />
+          <source src="/temp_video_for_share(3).mov" type="video/mp4" />
         </video>
 
         {/* Dark overlay for readability */}
