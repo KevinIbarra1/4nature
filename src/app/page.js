@@ -104,9 +104,9 @@ export default function LandingPage() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
-              <button className="px-6 py-2 rounded-full bg-white text-gray-950 font-medium shadow-lg hover:shadow-xl hover:bg-white transition">
+              {/* <button className="px-6 py-2 rounded-full bg-white text-gray-950 font-medium shadow-lg hover:shadow-xl hover:bg-white transition">
                 Donate
-              </button>
+              </button> */}
             </nav>
 
             {/* Mobile burger */}
@@ -148,12 +148,12 @@ export default function LandingPage() {
               {label}
             </a>
           ))}
-          <button
+          {/* <button
             onClick={() => setIsMenuOpen(false)}
             className="bg-white text-gray-950 px-8 py-3 rounded-full text-xl font-medium hover:bg-white transition"
           >
             Donate
-          </button>
+          </button> */}
         </div>
       </nav>
 
@@ -436,7 +436,7 @@ export default function LandingPage() {
       </section>
 
       {/* ================= CTA ================= */}
-      <section className="py-20 bg-gray-950 relative overflow-hidden">
+      {/* <section className="py-20 bg-gray-950 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-900 to-gray-950" />
         </div>
@@ -458,7 +458,7 @@ export default function LandingPage() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ================= CONTACT ================= */}
       <section id="contact" className="py-20 bg-gray-950">
