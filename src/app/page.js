@@ -31,6 +31,14 @@ export default function LandingPage() {
     { id: 6, name: "Javier Guadalupe", image: "/jav.webp" },
   ];
 
+  const galleryImages = [
+    "/gallery1.webp",
+    "/gallery2.webp",
+    "/gallery3.webp",
+    "/gallery4.webp",
+    "/gallery5.webp",
+  ];
+
   /* gradient wave animation (Ocean card) */
   const waveAnim = {
     backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
@@ -65,7 +73,7 @@ export default function LandingPage() {
             <div className="flex items-center space-x-3">
               <div className="relative w-12 h-12 rounded-full overflow-hidden">
                 <Image
-                  src="/4natureLogoWeb.webp"
+                  src="/Asset3.png"
                   alt="4Nature Logo"
                   fill
                   className="object-cover"
@@ -153,8 +161,8 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-800 to-gray-600"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 -left-4 w-72 h-72 bg-white rounded-full mix-blend-overlay filter blur-xl animate-pulse"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-gray-300 rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-1000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-white rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-500"></div>
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-gray-300 rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-[1000ms]"></div>
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-white rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-[500ms]"></div>
         </div>
         <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto">
           <h2 className="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-fadeInUp">
@@ -166,9 +174,15 @@ export default function LandingPage() {
             sustainable futures for communities and ecosystems.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12 animate-fadeInUp delay-500">
-            <button className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-xl hover:shadow-2xl">
+            {/* ⬇⬇⬇  UPDATED CTA  ⬇⬇⬇ */}
+            <a
+              href="#about"
+              className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100
+                         transition-all duration-300 transform hover:scale-105 flex items-center justify-center
+                         shadow-xl hover:shadow-2xl"
+            >
               Support Our Mission <ArrowRight className="ml-2 h-5 w-5" />
-            </button>
+            </a>
           </div>
         </div>
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
@@ -396,12 +410,16 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="absolute inset-4 bg-gradient-to-br from-gray-200 to-gray-400 rounded-2xl"></div>
-              <div className="relative w-full h-96 bg-gradient-to-br from-gray-100 to-gray-300 rounded-2xl shadow-2xl flex items-center justify-center">
-                <div className="text-gray-500 text-center">
-                  <Users className="h-24 w-24 mx-auto mb-4" />
-                  <p className="text-lg font-medium">Community Partnership</p>
-                </div>
+              <div className="absolute inset-4 bg-gradient-to-br from-gray-200 to-gray-400 rounded-2xl" />
+              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
+                {/* ✅ NEW: actual photograph replaces placeholder */}
+                <Image
+                  src="/21D4E136-1EBC-4B51-8112-4A16C426F1F9.JPG"
+                  alt="Community members collaborating on a project"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
             </div>
           </div>
