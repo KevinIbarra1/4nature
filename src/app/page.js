@@ -171,7 +171,7 @@ export default function LandingPage() {
         </video>
 
         {/* dark overlay */}
-        <div className="absolute inset-0 bg-gray-950/20" />
+        <div className="absolute inset-0 bg-gray-950/15" />
 
         {/* hero content */}
         <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
