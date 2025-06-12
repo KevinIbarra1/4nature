@@ -174,7 +174,7 @@ export default function LandingPage() {
         </video>
 
         {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0" />
 
         {/* Decorative pulse blobs (kept) */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
