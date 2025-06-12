@@ -157,13 +157,33 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
+     {/* ================= HERO SECTION (video background) ================= */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-800 to-gray-600"></div>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-white rounded-full mix-blend-overlay filter blur-xl animate-pulse"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-gray-300 rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-[1000ms]"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-white rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-[500ms]"></div>
+        {/* ► Video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+        >
+          {/* MOV files often play fine in Safari but not everywhere.
+             If you can, convert to MP4/WebM and add extra <source> tags. */}
+          <source src="/temp_video_for_share(2).mov" type="video/mp4" />
+        </video>
+
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/50" />
+
+        {/* Decorative pulse blobs (kept) */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-white rounded-full mix-blend-overlay filter blur-xl animate-pulse" />
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-gray-300 rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-[1000ms]" />
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-white rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-[500ms]" />
         </div>
+
+        {/* Hero content */}
         <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto">
           <h2 className="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-fadeInUp">
             Sowing hope <br />
@@ -174,7 +194,6 @@ export default function LandingPage() {
             sustainable futures for communities and ecosystems.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12 animate-fadeInUp delay-500">
-            {/* ⬇⬇⬇  UPDATED CTA  ⬇⬇⬇ */}
             <a
               href="#about"
               className="bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100
@@ -185,13 +204,14 @@ export default function LandingPage() {
             </a>
           </div>
         </div>
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+
+        {/* Scroll indicator (kept) */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white animate-bounce">
           <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white rounded-full mt-1"></div>
+            <div className="w-1 h-3 bg-white rounded-full mt-1" />
           </div>
         </div>
       </section>
-
       {/* Mission Section */}
       {/* ───────── Mission Section ───────── */}
       <section id="mission" className="py-20 bg-gray-50">
