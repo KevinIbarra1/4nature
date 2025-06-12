@@ -257,7 +257,7 @@ export default function LandingPage() {
               {/* header image */}
               <div className="relative h-64 overflow-hidden rounded-t-2xl">
                 <Image
-                  src="/IMG_2405.jpeg"
+                  src="/D7FF9191-0EE2-4FDE-AC06-BB3EAB0F951E.JPG"
                   alt="Humanitarian Impact"
                   fill
                   className="object-cover"
@@ -318,7 +318,7 @@ export default function LandingPage() {
               <div className="relative h-64 overflow-hidden rounded-t-2xl">
                 <Image
                   src="/555E4D0B-132B-4777-9D45-AFF0C45DFD20.JPG"
-                  alt="Humanitarian Impact"
+                  alt="Ocean and Coastal Conservation"
                   fill
                   className="object-cover"
                   priority
