@@ -254,20 +254,15 @@ export default function LandingPage() {
               whileHover={{ scale: 1.03 }}
             >
               {/* animated header */}
-              <div className="relative h-64 overflow-hidden flex items-center justify-center bg-gradient-to-br from-rose-600 to-pink-500">
-                {/* pulsing heart */}
-                <motion.div
-                  animate={{ scale: [1, 1.15, 1] }}
-                  transition={{
-                    duration: 2.4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="text-white"
-                >
-                  <Heart className="w-32 h-32" strokeWidth={1.5} />
-                </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              {/* header image */}
+              <div className="relative h-64 overflow-hidden rounded-t-2xl">
+                <Image
+                  src="/IMG_2405.jpeg"
+                  alt="Humanitarian Impact"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
 
               <div className="p-8">
@@ -320,35 +315,15 @@ export default function LandingPage() {
               viewport={{ once: true, amount: 0.35 }}
               whileHover={{ scale: 1.03 }}
             >
-              {/* animated header */}
-              <motion.div
-                className="relative h-64 overflow-hidden"
-                animate={waveAnim}
-                transition={{
-                  duration: 18,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                style={{
-                  backgroundImage:
-                    "linear-gradient(135deg,#0284c7 0%,#14b8a6 25%,#0369a1 50%,#0ea5e9 75%,#0284c7 100%)",
-                  backgroundSize: "200% 200%",
-                }}
-              >
-                {/* leaf icon floating */}
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center text-white"
-                  animate={{ y: ["0%", "-8%", "0%"] }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <Leaf className="w-28 h-28" strokeWidth={1.4} />
-                </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              </motion.div>
+              <div className="relative h-64 overflow-hidden rounded-t-2xl">
+                <Image
+                  src="/555E4D0B-132B-4777-9D45-AFF0C45DFD20.JPG"
+                  alt="Humanitarian Impact"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
 
               <div className="p-8">
                 <div className="flex items-center mb-6">
