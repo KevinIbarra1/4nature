@@ -92,7 +92,13 @@ export default function LandingPage() {
                   priority
                 />
               </div>
-              <h1 className="text-2xl font-bold text-white">4NaturePR</h1>
+              <h1
+                className={`text-2xl font-bold transition-colors duration-300 ${
+                  scrolled ? "text-black" : "text-white"
+                }`}
+              >
+                4NaturePR
+              </h1>
             </div>
 
             {/* Desktop Navigation */}
@@ -106,20 +112,30 @@ export default function LandingPage() {
                 <a
                   key={label}
                   href={href}
-                  className="text-gray-700 hover:text-black font-medium transition-all duration-300 relative group"
+                  className={`font-medium transition-colors duration-300 relative group ${
+                    scrolled
+                      ? "text-gray-700 hover:text-black"
+                      : "text-white hover:text-gray-200"
+                  }`}
                 >
                   {label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-current transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
-              <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition-all duration-300 font-medium transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <button
+                className={`px-6 py-2 rounded-full font-medium transform transition duration-300 shadow-lg hover:shadow-xl ${
+                  scrolled
+                    ? "bg-black text-white hover:bg-gray-800"
+                    : "bg-white text-black hover:bg-white/90"
+                }`}
+              >
                 Donate
               </button>
             </nav>
 
             {/* Mobile Menu Button */}
             <button
-              className={`lg:hidden p-2 rounded-lg transition-colors ${
+              className={`lg:hidden p-2 rounded-lg transition-colors duration-300 ${
                 scrolled
                   ? "text-black hover:bg-gray-100"
                   : "text-white hover:bg-white/20"
