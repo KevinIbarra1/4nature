@@ -14,6 +14,10 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "4NaturePR",
   description: "Bridging humanitarian aid and environmental conservation.",
+  icons: {
+    icon: "/Asset3.png",
+    shortcut: "/Asset3.png",
+  },
 };
 
 export default function RootLayout({ children }) {
